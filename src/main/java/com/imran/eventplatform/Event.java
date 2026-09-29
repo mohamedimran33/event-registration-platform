@@ -7,6 +7,19 @@ public class Event {
     private int maxCapacity;
 
     public Event(Long id, String title, String venue, int maxCapacity) {
+
+        if(title==null || title.isBlank()){
+            throw new IllegalArgumentException("Event Title Cannot be Empty");
+        }
+
+        if(venue==null || venue.isBlank()){
+            throw new IllegalArgumentException("Event venue Cannot be Empty");
+        }
+
+        if(maxCapacity<0){
+            throw new IllegalArgumentException("Enter a Valid Capacity ");
+        }
+
         this.id = id;
         this.title = title;
         this.venue = venue;
@@ -27,5 +40,19 @@ public class Event {
 
     public int getMaxCapacity() {
         return maxCapacity;
+    }
+
+    public void updateCapacity(int newCapacity){
+        if(newCapacity<0){
+            throw new IllegalArgumentException("Capacity should be greater than zero");
+        }
+
+        this.maxCapacity=newCapacity;
+    }
+
+    public void updateVenue(String newVenue){
+        if(newVenue==null || newVenue.isBlank()){
+            throw new IllegalArgumentException("please update with the valid venue");
+        }
     }
 }

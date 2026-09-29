@@ -22,6 +22,15 @@ public class Main {
         System.out.println(springBootEvent.getVenue());
         System.out.println(springBootEvent.getMaxCapacity());
 
+        springBootEvent.updateCapacity(400);
+
+        System.out.println(springBootEvent.getMaxCapacity());
+
+        springBootEvent.updateVenue("Coimbatore");
+
+        System.out.println(springBootEvent.getVenue());
+
+
 
     }
 }
