@@ -24,6 +24,8 @@ public class Event {
         this.title = title;
         this.venue = venue;
         this.maxCapacity = maxCapacity;
+
+        eventCount++;
     }
 
     public Long getId() {
@@ -43,7 +45,7 @@ public class Event {
     }
 
     public void updateCapacity(int newCapacity){
-        if(newCapacity<0){
+        if(newCapacity<=0){
             throw new IllegalArgumentException("Capacity should be greater than zero");
         }
 
@@ -54,5 +56,19 @@ public class Event {
         if(newVenue==null || newVenue.isBlank()){
             throw new IllegalArgumentException("please update with the valid venue");
         }
+
+        this.venue=newVenue;
+    }
+
+    public void printSummary(){
+        System.out.println("Event :"+ title);
+        System.out.println("Venue :"+ venue);
+        System.out.println("capacity:"+ maxCapacity);
+    }
+
+    private static int eventCount=0;
+
+    public static int getEventCount() {
+        return eventCount;
     }
 }
