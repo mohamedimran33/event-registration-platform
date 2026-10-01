@@ -6,10 +6,13 @@ public class Event {
     private String venue;
     private int maxCapacity;
 
+
+
     public Event(Long id, String title, String venue, int maxCapacity) {
 
         if(title==null || title.isBlank()){
             throw new IllegalArgumentException("Event Title Cannot be Empty");
+
         }
 
         if(venue==null || venue.isBlank()){
@@ -45,7 +48,7 @@ public class Event {
     }
 
     public void updateCapacity(int newCapacity){
-        if(newCapacity<=0){
+        if(newCapacity<0){
             throw new IllegalArgumentException("Capacity should be greater than zero");
         }
 
@@ -71,4 +74,6 @@ public class Event {
     public static int getEventCount() {
         return eventCount;
     }
+
+
 }

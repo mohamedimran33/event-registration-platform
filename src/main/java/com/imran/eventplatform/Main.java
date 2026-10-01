@@ -41,6 +41,62 @@ public class Main {
         System.out.println(Event.getEventCount());
 
 
+        try{
+            Event invalidEvent=new Event(4l,"","chennai",0);
+            System.out.println(invalidEvent.getMaxCapacity());
+
+        }
+
+        catch(IllegalArgumentException e){
+            System.out.println("Error:" +e.getMessage());
+        }
+
+        try{
+            Event pythonWorkshop=new Event(5l,"python workshop","coimbatore",-1);
+            System.out.println(pythonWorkshop.getMaxCapacity());
+        }
+
+
+        catch(IllegalArgumentException e){
+            System.out.println("Error"+e.getMessage());
+        }
+
+        try{
+            Event WebDevClass=new Event(6l,"Web Development Seminar","Erode",150);
+        }
+
+        catch(IllegalArgumentException e){
+            System.out.println("Error:" + e.getMessage());
+        }
+
+        finally {
+            System.out.println("Event creation attempt completed");
+        }
+
+        try{
+            testEvent(-5);
+        }
+
+        catch(IllegalArgumentException e){
+            System.out.println("Error:" + e.getMessage());
+        }
+
+        try{
+            testEvent(100);
+            System.out.println("100 is valid");
+        }
+
+        catch(IllegalArgumentException e){
+            System.out.println("error"+ e.getMessage());
+        }
+
+    }
+
+
+    public static void testEvent(int capacity){
+        if(capacity<=0){
+            throw new IllegalArgumentException("the capacity you entered is incorrect");
+        }
 
     }
 }
