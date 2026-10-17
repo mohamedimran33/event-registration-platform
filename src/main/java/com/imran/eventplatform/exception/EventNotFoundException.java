@@ -1,4 +1,4 @@
-package com.imran.eventplatform;
+package com.imran.eventplatform.exception;
 
 public class EventNotFoundException extends RuntimeException{
 

@@ -1,4 +1,4 @@
-package com.imran.eventplatform;
+package com.imran.eventplatform.model;
 
 public class Event {
     private Long id;
@@ -7,19 +7,18 @@ public class Event {
     private int maxCapacity;
 
 
-
     public Event(Long id, String title, String venue, int maxCapacity) {
 
-        if(title==null || title.isBlank()){
+        if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Event Title Cannot be Empty");
 
         }
 
-        if(venue==null || venue.isBlank()){
+        if (venue == null || venue.isBlank()) {
             throw new IllegalArgumentException("Event venue Cannot be Empty");
         }
 
-        if(maxCapacity<0){
+        if (maxCapacity < 0) {
             throw new IllegalArgumentException("Enter a Valid Capacity ");
         }
 
@@ -47,29 +46,29 @@ public class Event {
         return maxCapacity;
     }
 
-    public void updateCapacity(int newCapacity){
-        if(newCapacity<=0){
+    public void updateCapacity(int newCapacity) {
+        if (newCapacity <= 0) {
             throw new IllegalArgumentException("Capacity should be greater than zero");
         }
 
-        this.maxCapacity=newCapacity;
+        this.maxCapacity = newCapacity;
     }
 
-    public void updateVenue(String newVenue){
-        if(newVenue==null || newVenue.isBlank()){
+    public void updateVenue(String newVenue) {
+        if (newVenue == null || newVenue.isBlank()) {
             throw new IllegalArgumentException("please update with the valid venue");
         }
 
-        this.venue=newVenue;
+        this.venue = newVenue;
     }
 
-    public void printSummary(){
-        System.out.println("Event :"+ title);
-        System.out.println("Venue :"+ venue);
-        System.out.println("capacity:"+ maxCapacity);
+    public void printSummary() {
+        System.out.println("Event :" + title);
+        System.out.println("Venue :" + venue);
+        System.out.println("capacity:" + maxCapacity);
     }
 
-    private static int eventCount=0;
+    private static int eventCount = 0;
 
     public static int getEventCount() {
         return eventCount;
