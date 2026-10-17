@@ -87,7 +87,23 @@ public class Main {
         }
 
         catch(IllegalArgumentException e){
-            System.out.println("error"+ e.getMessage());
+            System.out.println("error:"+ e.getMessage());
+        }
+
+        try{
+            findEvent(999);
+        }
+
+        catch(EventNotFoundException e){
+            System.out.println("Error:" + e.getMessage());
+        }
+
+        try{
+            findEvent(1);
+        }
+
+        catch(EventNotFoundException e){
+            System.out.println("Error:"+ e.getMessage());
         }
 
     }
@@ -97,6 +113,18 @@ public class Main {
         if(capacity<=0){
             throw new IllegalArgumentException("the capacity you entered is incorrect");
         }
+    }
+
+    public static void findEvent(int id){
+        if(id!=1 && id!=3){
+            throw new EventNotFoundException("Event with id " + id + " not found");
+
+        }
+        System.out.println("Event Found");
 
     }
+
+
+
+
 }

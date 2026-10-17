@@ -48,7 +48,7 @@ public class Event {
     }
 
     public void updateCapacity(int newCapacity){
-        if(newCapacity<0){
+        if(newCapacity<=0){
             throw new IllegalArgumentException("Capacity should be greater than zero");
         }
 
