@@ -1,8 +1,8 @@
 package com.imran.eventplatform;
 
-import com.imran.eventplatform.Notification.EmailNotification;
-import com.imran.eventplatform.Notification.NotificationService;
-import com.imran.eventplatform.Notification.SmsNotification;
+import com.imran.eventplatform.notification.EmailNotification;
+import com.imran.eventplatform.notification.NotificationService;
+import com.imran.eventplatform.notification.SmsNotification;
 import com.imran.eventplatform.exception.EventNotFoundException;
 import com.imran.eventplatform.model.Event;
 import com.imran.eventplatform.model.OnlineEvent;
@@ -124,6 +124,11 @@ public class Main {
         NotificationService sms=new SmsNotification();
         email.sendNotification();
         sms.sendNotification();
+
+        System.out.println();
+        notifyUser(new EmailNotification());
+        notifyUser(new SmsNotification());
+
     }
 
 
@@ -140,6 +145,10 @@ public class Main {
         }
         System.out.println("Event Found");
 
+    }
+
+    public static void notifyUser(NotificationService notification){
+        notification.sendNotification();
     }
 
 

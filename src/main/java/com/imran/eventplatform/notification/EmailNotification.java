@@ -1,6 +1,6 @@
-package com.imran.eventplatform.Notification;
+package com.imran.eventplatform.notification;
 
-public class EmailNotification extends NotificationService {
+public class EmailNotification implements NotificationService {
 
     @Override
     public void sendNotification() {
