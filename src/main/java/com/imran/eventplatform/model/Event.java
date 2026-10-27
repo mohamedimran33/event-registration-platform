@@ -1,5 +1,7 @@
 package com.imran.eventplatform.model;
 
+import java.util.ArrayList;
+
 public class Event {
     private Long id;
     private String title;
@@ -73,6 +75,9 @@ public class Event {
     public static int getEventCount() {
         return eventCount;
     }
+
+
+
 
 
 }
