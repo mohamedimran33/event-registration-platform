@@ -36,4 +36,14 @@ public class EventService {
        events.removeIf(event -> event.getId().equals(id));
        return true;
    }
+
+   public void updateEventVenue(Long id, String newVenue){
+       Event venue=searchEventById(id);
+       venue.updateVenue(newVenue);
+   }
+
+   public void updateEventCapacity(Long id, int newCapacity){
+       Event capacity=searchEventById(id);
+       capacity.updateCapacity(newCapacity);
+   }
 }
