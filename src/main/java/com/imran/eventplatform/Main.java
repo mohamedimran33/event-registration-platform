@@ -1,41 +1,42 @@
-package com.imran.eventplatform;
-import com.imran.eventplatform.model.Event;
-import com.imran.eventplatform.exception.EventNotFoundException;
 
-import java.util.ArrayList;
+package com.imran.eventplatform;
+
+import com.imran.eventplatform.exception.EventNotFoundException;
+import com.imran.eventplatform.model.Event;
+import com.imran.eventplatform.service.EventService;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Event> events = new ArrayList<>();
+        // 1. Create the event service
+        EventService service = new EventService();
 
-        events.add(new Event(1L, "Java Workshop", "Chennai", 50));
-        events.add(new Event(3L, "Spring Boot Event", "Bangalore", 350));
+        // 2. Register events
+        service.addEvent(new Event(
+                1L, "Chai Startups Meetup", "Bangalore", 100
+        ));
 
-        System.out.println("Total events: " + events.size());
+        service.addEvent(new Event(
+                2L, "Tech Meetup", "Bangalore", 80
+        ));
 
+        // 3. Display total registered events
+        System.out.println("Total events: " + service.getTotalEvents());
+
+        // 4. Search for an existing event
         try {
-            Event found = findEventById(events, 3L);
+            Event found = service.searchEventById(2L);
             found.printSummary();
-
-            findEventById(events, 4L);
-
         } catch (EventNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }
-    }
 
-    public static Event findEventById(ArrayList<Event> events, Long id) {
-
-        for (Event event : events) {
-            if (event.getId().equals(id)) {
-                return event;
-            }
+        // 5. Handle an event that does not exist
+        try {
+            service.searchEventById(999L);
+        } catch (EventNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-
-        throw new EventNotFoundException(
-                "Event with ID " + id + " not found"
-        );
     }
 }
