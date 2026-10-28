@@ -38,5 +38,24 @@ public class Main {
         } catch (EventNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+        // 6. Event deletion
+        boolean deleted= service.deleteEvent(2L);
+        boolean deleted1= service.deleteEvent(2L);
+
+        System.out.println("deleted: "+ deleted);
+        System.out.println("deleted: "+ deleted1);
+        System.out.println(service.getTotalEvents());
+
+        //adding event without duplicate id
+        try{
+            service.addEvent(new Event(2L,"Tech Meetup SDE","Bangalore",150));
+            service.addEvent(new Event(2L,"Tech Meetup SDE","Bangalore",150));
+
+        }
+        catch(IllegalArgumentException e){
+            System.out.println("Error: " + e.getMessage());
+        }
     }
+
 }
