@@ -1,49 +1,58 @@
+
 package com.imran.eventplatform.service;
 
 import com.imran.eventplatform.exception.EventNotFoundException;
 import com.imran.eventplatform.model.Event;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventService {
 
-   private ArrayList<Event> events=new ArrayList<>();
+    // Store events using their IDs as keys
+    private final Map<Long, Event> events = new HashMap<>();
 
-   public void addEvent(Event event){
-       for(Event e:events){
-           if(e.getId().equals(event.getId())) {
-               throw new IllegalArgumentException(" Id already present");
-           }
-       }
-       events.add(event);
-   }
+    // CREATE - Add an event and prevent duplicate IDs
+    public void addEvent(Event event) {
+        if (events.containsKey(event.getId())) {
+            throw new IllegalArgumentException("ID already present");
+        }
 
-   public int getTotalEvents(){
-       return events.size();
-   }
+        events.put(event.getId(), event);
+    }
 
-   public Event searchEventById(Long id){
-       for ( Event e:events){
-           if(e.getId().equals(id)){
-               return e;
-           }
-       }
+    // READ - Return the total number of events
+    public int getTotalEvents() {
+        return events.size();
+    }
 
-       throw new EventNotFoundException("Event with id " + id + " Not found");
-   }
+    // READ - Find an event by ID
+    public Event searchEventById(Long id) {
+        Event event = events.get(id);
 
-   public boolean deleteEvent(Long id){
-       events.removeIf(event -> event.getId().equals(id));
-       return true;
-   }
+        if (event == null) {
+            throw new EventNotFoundException(
+                    "Event with ID " + id + " not found"
+            );
+        }
 
-   public void updateEventVenue(Long id, String newVenue){
-       Event venue=searchEventById(id);
-       venue.updateVenue(newVenue);
-   }
+        return event;
+    }
 
-   public void updateEventCapacity(Long id, int newCapacity){
-       Event capacity=searchEventById(id);
-       capacity.updateCapacity(newCapacity);
-   }
+    // DELETE - Remove an event by ID
+    public boolean deleteEvent(Long id) {
+        return events.remove(id) != null;
+    }
+
+    // UPDATE - Change an event's venue
+    public void updateEventVenue(Long id, String newVenue) {
+        Event event = searchEventById(id);
+        event.updateVenue(newVenue);
+    }
+
+    // UPDATE - Change an event's capacity
+    public void updateEventCapacity(Long id, int newCapacity) {
+        Event event = searchEventById(id);
+        event.updateCapacity(newCapacity);
+    }
 }
